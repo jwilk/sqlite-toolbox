@@ -1,0 +1,7 @@
+#!/bin/sh
+for file in "$@"
+do
+   printf '%s: %s ... ' "$file" "$(du -sh "$file" | cut -f 1)"
+   sqlite3 "$file" vacuum
+   printf '%s\n' "$(du -sh "$file" | cut -f1)"
+done
